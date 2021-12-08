@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -10,26 +11,44 @@ using ExplorerFileMangerUIProject.Annotations;
 
 namespace ExplorerFileMangerUIProject.ViewModelContainer
 {
-    class ViewModel : INotifyPropertyChanged
+    class BaseViewModel : INotifyPropertyChanged
     {
-        //public ViewModel()
-        //{
-        //    Directory.GetDirectoryRoot(RootDiskName);
-        //    RootDiskName = Directory.GetDirectoryRoot(RootDiskName);
+        #region PropertyChanged
+        //Реализация Проперти чанджет
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        //}
-        public ViewModel()
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            RootDiskName = Directory.GetDirectoryRoot(@"E:\\Книги");
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+    }
+
+    class ViewModel : BaseViewModel
+    {
+        public ViewModel()
+        { 
+            //Directory.GetDirectoryRoot(RootDiskName);
+            //RootDiskName = Directory.GetDirectoryRoot(RootDiskName);
+
+            DirAndFls = new ObservableCollection<string>();
+            foreach (var logicalDrive in Directory.GetLogicalDrives())
+            {
+                DirAndFls.Add(logicalDrive);
+            }
         }
 
         #region Properties
-        /// <summary>
         /// проперти чанджет требуется для диска,
         /// чтобы отслеживать
         /// изменения или
         /// открытие для отображение во вьюшке
-        /// </summary>
+        
+        
+        public string DirFlPath { get; set; }
+
+        public ObservableCollection<string> DirAndFls { get; set; }
+
         private string _rootDiskName;
 
         public string RootDiskName
@@ -38,20 +57,17 @@ namespace ExplorerFileMangerUIProject.ViewModelContainer
             set { _rootDiskName = value; OnPropertyChanged(nameof(RootDiskName)); }
         }
         #endregion
+    }
 
-        #region PropertyChanged
-        //Реализация Проперти чанджет
-        public event PropertyChangedEventHandler PropertyChanged;
+    class DirViewModel
+    {
 
-        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-
-       
-
+    }
+    
+    class FlViewModel
+    {
         
     }
+
+
 }

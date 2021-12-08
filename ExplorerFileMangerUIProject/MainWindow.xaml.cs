@@ -24,8 +24,10 @@ namespace ExplorerFileMangerUIProject
         public MainWindow()
         {
             InitializeComponent();
-
-            mainTxtb.DataContext = new ViewModel();
+            ViewModel viewModel = new ViewModel();
+            DirFlViewLstb.ItemsSource = viewModel.DirAndFls;
         }
+
+       
     }
 }

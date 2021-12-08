@@ -8,9 +8,43 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         WindowStartupLocation="Manual">
-    
+
     <Grid>
-        <TextBlock x:Name="mainTxtb" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding RootDiskName}" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!--//<GridSplitter Grid.Row="1" Width="5"
+                      VerticalAlignment="Stretch" HorizontalAlignment="Center" Grid.Column="1"/>-->
+        <UniformGrid Grid.Row="1" Grid.Column="2" Columns="4">
+            
+            <TextBlock Text="Имя">
+                <StackPanel >
+                    <ListBox x:Name ="DirFlViewLstb" ItemsSource="{Binding Path= DirAndFls}"/>
+                </StackPanel>
+            </TextBlock>
+            <TextBlock Text="Даты"/>
+            <TextBlock Text="Тип"/>
+            <TextBlock Text="Размер"/>
+        </UniformGrid>
+        <TextBlock x:Name="DirFlPathTxtB" 
+                   Text="{Binding Path=DirFlPath}"
+                   HorizontalAlignment="Left"
+                   TextWrapping="Wrap" 
+                   VerticalAlignment="Top"/>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TreeView HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="5"/>
+        </StackPanel>
+
+        <GridSplitter Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Width="1"
+                      VerticalAlignment="Stretch" HorizontalAlignment="Center"></GridSplitter>
 
     </Grid>
 </Window>

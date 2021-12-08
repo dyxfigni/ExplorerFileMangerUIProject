@@ -10,9 +10,6 @@ using ExplorerFileMangerUIProject.Annotations;
 
 namespace ExplorerFileMangerUIProject.ViewModelContainer
 {
-    /// <summary>
-    /// 
-    /// </summary>
     class ViewModel : INotifyPropertyChanged
     {
         //public ViewModel()
@@ -26,7 +23,13 @@ namespace ExplorerFileMangerUIProject.ViewModelContainer
             RootDiskName = Directory.GetDirectoryRoot(@"E:\\Книги");
         }
 
-
+        #region Properties
+        /// <summary>
+        /// проперти чанджет требуется для диска,
+        /// чтобы отслеживать
+        /// изменения или
+        /// открытие для отображение во вьюшке
+        /// </summary>
         private string _rootDiskName;
 
         public string RootDiskName
@@ -34,6 +37,7 @@ namespace ExplorerFileMangerUIProject.ViewModelContainer
             get => _rootDiskName;
             set { _rootDiskName = value; OnPropertyChanged(nameof(RootDiskName)); }
         }
+        #endregion
 
         #region PropertyChanged
         //Реализация Проперти чанджет
@@ -46,12 +50,7 @@ namespace ExplorerFileMangerUIProject.ViewModelContainer
         }
         #endregion
 
-        /// <summary>
-        /// проперти чанджет требуется для диска,
-        /// чтобы отслеживать
-        /// изменения или
-        /// открытие для отображение во вьюшке
-        /// </summary>
+       
 
         
     }

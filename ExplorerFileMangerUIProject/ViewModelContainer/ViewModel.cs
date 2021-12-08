@@ -59,15 +59,19 @@ namespace ExplorerFileMangerUIProject.ViewModelContainer
         #endregion
     }
 
-    class DirViewModel
+    class DirViewModel :FileInfViewModel
     {
 
     }
     
-    class FlViewModel
+    class FlViewModel: FileInfViewModel
     {
         
     }
 
 
+    class FileInfViewModel : BaseViewModel
+    {
+        
+    }
 }

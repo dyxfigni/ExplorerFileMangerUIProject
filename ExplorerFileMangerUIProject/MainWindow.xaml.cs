@@ -24,10 +24,14 @@ namespace ExplorerFileMangerUIProject
         public MainWindow()
         {
             InitializeComponent();
-            ViewModel viewModel = new ViewModel();
+            MainViewModel viewModel = new MainViewModel();
             DirFlViewLstb.ItemsSource = viewModel.DirAndFls;
         }
 
-       
+        private void DirFlViewLstb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selectedCountry = DirFlViewLstb.SelectedItem.ToString();
+            
+        }
     }
 }
